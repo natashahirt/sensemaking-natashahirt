@@ -69,36 +69,38 @@ def scrape_courses_page(soup):
     Title // Description // URL
     """
 
-    course_list = soup.find("ul", class_="course-feed")
+    course_feeds = soup.find_all("ul", class_="course-feed")
     page_courses = []
 
-    if course_list:
+    for course_feed in course_feeds:
 
-        courses = course_list.find_all("li")
-        
-        for course in courses:
+        if course_feed:
 
-            course_link = course.find("a")
+            courses = course_feed.find_all("li")
+            
+            for course in courses:
 
-            if course_link is not None:
+                course_link = course.find("a")
 
-                course_url = course_link.get('href')
-                course_title = course_link.get_text(strip=True)
-                course_description = course_link.find_next_sibling(string=True)
-                if course_description:
-                    course_description = course_description.strip()
+                if course_link is not None:
+
+                    course_url = course_link.get('href')
+                    course_title = course_link.get_text(strip=True)
+                    course_description = course_link.find_next_sibling(string=True)
+                    if course_description:
+                        course_description = course_description.strip()
+                    else:
+                        course_description = "Description not available"
+                    
+                    page_courses.append({
+                        "Title": course_title,
+                        "Description": course_description,
+                        "URL": course_url
+                    })
+
                 else:
-                    course_description = "Description not available"
-                
-                page_courses.append({
-                    "Title": course_title,
-                    "Description": course_description,
-                    "URL": course_url
-                })
-
-            else:
-                continue
-                print(f"Warning: No <a> tag found in this course: {course.get_text(strip=True)}")
+                    print(f"Warning: No <a> tag found in this course: {course.get_text(strip=True)}")
+                    continue
 
     return page_courses
     

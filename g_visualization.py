@@ -10,3 +10,7 @@
 #     Chart.JS, https://www.chartjs.org/
 #     Google Charts, https://developers.google.com/chart/
 # -----------------------------------------------
+
+from _imports import *
+
+word_count_df = get_frequency_count(url)

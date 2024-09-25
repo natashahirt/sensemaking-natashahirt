@@ -74,8 +74,3 @@ def combine_all_pages(url, max_pages = None):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
     
-"""
-Run code
-"""
-
-all_html = combine_all_pages(BU_URL)

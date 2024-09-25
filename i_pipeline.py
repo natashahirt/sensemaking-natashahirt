@@ -9,9 +9,18 @@
 #  generation of outputs from all your 
 #  previous files, consolidating the 
 #  results into one sequence.
+
+# NOTE: I used the previous files as sources for my functions which I then
+# combined in this file.
 # -----------------------------------------------
 
 from _imports import *
 
-course_df = scrape_bu_courses(BU_URL)   # a_pull function
-all_html = combine_all_pages(BU_URL)    # b_combine function
+def scrape_pipeline(url):
+    
+    all_html = combine_all_pages(url)    # b_combine
+    all_soup = BeautifulSoup(all_html, 'html.parser') 
+    scraped = scrape_courses_page(all_soup) # a_pull
+    scraped_df = pd.DataFrame(scraped)
+
+    return scraped_df
