@@ -14,3 +14,14 @@
 #           https://regexr.com 
 #           https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
 # -----------------------------------------------
+
+from _imports import *
+from b_combine import *
+
+# the answer to this is in a_pull under scrape_courses_page
+# example run:
+
+all_html = combine_all_pages(BU_URL)
+all_soup = BeautifulSoup(all_html, 'html.parser')
+scraped = scrape_courses_page(all_soup)
+scraped_df = pd.DataFrame(scraped)

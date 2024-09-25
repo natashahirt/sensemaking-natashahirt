@@ -15,7 +15,7 @@
 # Note: whoops I overdid it on this one
 # -----------------------------------------------
 
-from imports import *
+from _imports import *
 
 # functions
 def scrape_departments(soup):
@@ -149,18 +149,3 @@ def scrape_bu_courses(url, max_pages = None):
 
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
-
-
-"""
-Run code
-"""
-
-url = "https://www.bu.edu/academics/cas/courses"
-course_df = scrape_bu_courses(url)
-        
-for index, row in course_df.iterrows():
-    print(f"Row {index}:")
-    print(f"Title: {row['Title']}")
-    print(f"Description: {row['Description']}")
-    print(f"URL: {row['URL']}")
-    print("-" * 40)  # Separator for readability

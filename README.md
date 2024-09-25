@@ -6,3 +6,5 @@ Problem set objective: Gain hands-on experience in data collection, storage, pro
 # Notes:
 Files have been renamed so that I can reference them in other documents
 using import statements.
+
+All the runnable code for the first section is in i_pipeline.py

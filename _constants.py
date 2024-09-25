@@ -1,0 +1,1 @@
+BU_URL = "https://www.bu.edu/academics/cas/courses"
