@@ -11,11 +11,11 @@
 #     Harvard: https://courses.my.harvard.edu
 #     BU: https://www.bu.edu/academics/cas/courses
 #     NE: https://catalog.northeastern.edu/course-descriptions
+
+# Note: whoops I overdid it on this one
 # -----------------------------------------------
 
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+from imports import *
 
 # functions
 def scrape_departments(soup):
@@ -40,7 +40,8 @@ def scrape_departments(soup):
 
 def get_next_page(soup, current_page_number):
     """
-    Gets the next page link.
+    Gets the next page link using the pagination tab at the bottom of the
+    courses container.
     """
 
     pagination = soup.find('div', class_='pagination')
@@ -63,6 +64,10 @@ def get_next_page(soup, current_page_number):
     return None, None
 
 def scrape_courses_page(soup):
+    """
+    Get the courses forom the page. Return a dictionary with headings
+    Title // Description // URL
+    """
 
     course_list = soup.find("ul", class_="course-feed")
     page_courses = []
@@ -98,6 +103,10 @@ def scrape_courses_page(soup):
     return page_courses
     
 def scrape_bu_courses(url, max_pages = None):
+    """
+    Using the provided URL, scrape the BU website for the courses and their
+    descriptions. Return a dataframe with the scraped information.
+    """
 
     # send GET request to page
     response = requests.get(url)
