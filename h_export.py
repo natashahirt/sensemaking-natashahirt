@@ -18,3 +18,9 @@
 #  any assumptions or decisions made during 
 #  the data preparation process.
 # -----------------------------------------------
+
+from _imports import *
+
+def export(df, path='results/scraped_BU_catalog.csv'):
+
+    df.to_csv(path, index=False)

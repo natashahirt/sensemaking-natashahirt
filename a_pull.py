@@ -85,7 +85,9 @@ def scrape_courses_page(soup):
                 if course_link is not None:
 
                     course_url = course_link.get('href')
-                    course_title = course_link.get_text(strip=True)
+                    course_name = course_link.get_text(strip=True)
+                    course_number = course_name.split(':', 1)[0].strip()
+                    course_title = course_name.split(":", 1)[1].strip()
                     course_description = course_link.find_next_sibling(string=True)
                     if course_description:
                         course_description = course_description.strip()
@@ -93,18 +95,19 @@ def scrape_courses_page(soup):
                         course_description = "Description not available"
                     
                     page_courses.append({
+                        "Number": course_number,
                         "Title": course_title,
                         "Description": course_description,
                         "URL": course_url
                     })
 
                 else:
-                    print(f"Warning: No <a> tag found in this course: {course.get_text(strip=True)}")
-                    continue
+                    # it's a hub and not a course
+                    pass
 
     return page_courses
     
-def scrape_bu_courses(url, max_pages = None):
+def scrape_bu_courses(url, max_pages = MAX_PAGES):
     """
     Using the provided URL, scrape the BU website for the courses and their
     descriptions. Return a dataframe with the scraped information.

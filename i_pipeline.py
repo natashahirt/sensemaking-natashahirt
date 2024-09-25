@@ -11,16 +11,15 @@
 #  results into one sequence.
 
 # NOTE: I used the previous files as sources for my functions which I then
-# combined in this file.
+# combined in this file. Instead of having a bunch of extra files you could also just
+# bring the functions into one big file and it would work fine.
 # -----------------------------------------------
 
 from _imports import *
 
-def scrape_pipeline(url):
+def export_and_analyze_BU_catalog(url=BU_URL):
     
-    all_html = combine_all_pages(url)    # b_combine
-    all_soup = BeautifulSoup(all_html, 'html.parser') 
-    scraped = scrape_courses_page(all_soup) # a_pull
-    scraped_df = pd.DataFrame(scraped)
-
-    return scraped_df
+    scraped_df = scrape_pipeline(url)
+    export(scraped_df)
+    word_count_df = get_frequency_df(scraped_df)
+    visualize_frequency_count(word_count_df, n_words=20) # visualize

@@ -18,9 +18,15 @@
 # the answer to this is in a_pull under scrape_courses_page
 # example run (also found in i_pipeline):
 
-"""
-all_html = combine_all_pages(BU_URL)
-all_soup = BeautifulSoup(all_html, 'html.parser')
-scraped = scrape_courses_page(all_soup)
-scraped_df = pd.DataFrame(scraped)
-"""
+from _imports import *
+
+def scrape_pipeline(url):
+    """
+    Pipeline for scraping data from the course website given the previous exercises
+    """
+    all_html = combine_all_pages(url)    # b_combine
+    all_soup = BeautifulSoup(all_html, 'html.parser') 
+    scraped = scrape_courses_page(all_soup) # a_pull
+    scraped_df = pd.DataFrame(scraped)
+
+    return scraped_df
