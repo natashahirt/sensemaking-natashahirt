@@ -8,8 +8,7 @@
 #  python or javascript.
 # -----------------------------------------------
 
-from imports import *
-from a_pull import get_next_page
+from _imports import *
 
 def get_page_content(url):
 
@@ -32,7 +31,7 @@ def get_page_content(url):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return ""
     
-def combine_all_pages(url):
+def combine_all_pages(url, max_pages = None):
 
     # send GET request to page
     response = requests.get(url)
@@ -75,6 +74,3 @@ def combine_all_pages(url):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
     
-"""
-Run code
-"""

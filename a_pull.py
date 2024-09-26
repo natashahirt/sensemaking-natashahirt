@@ -15,7 +15,7 @@
 # Note: whoops I overdid it on this one
 # -----------------------------------------------
 
-from imports import *
+from _imports import *
 
 # functions
 def scrape_departments(soup):
@@ -69,40 +69,45 @@ def scrape_courses_page(soup):
     Title // Description // URL
     """
 
-    course_list = soup.find("ul", class_="course-feed")
+    course_feeds = soup.find_all("ul", class_="course-feed")
     page_courses = []
 
-    if course_list:
+    for course_feed in course_feeds:
 
-        courses = course_list.find_all("li")
-        
-        for course in courses:
+        if course_feed:
 
-            course_link = course.find("a")
+            courses = course_feed.find_all("li")
+            
+            for course in courses:
 
-            if course_link is not None:
+                course_link = course.find("a")
 
-                course_url = course_link.get('href')
-                course_title = course_link.get_text(strip=True)
-                course_description = course_link.find_next_sibling(string=True)
-                if course_description:
-                    course_description = course_description.strip()
+                if course_link is not None:
+
+                    course_url = course_link.get('href')
+                    course_name = course_link.get_text(strip=True)
+                    course_number = course_name.split(':', 1)[0].strip()
+                    course_title = course_name.split(":", 1)[1].strip()
+                    course_description = course_link.find_next_sibling(string=True)
+                    if course_description:
+                        course_description = course_description.strip()
+                    else:
+                        course_description = "Description not available"
+                    
+                    page_courses.append({
+                        "Number": course_number,
+                        "Title": course_title,
+                        "Description": course_description,
+                        "URL": course_url
+                    })
+
                 else:
-                    course_description = "Description not available"
-                
-                page_courses.append({
-                    "Title": course_title,
-                    "Description": course_description,
-                    "URL": course_url
-                })
-
-            else:
-                continue
-                print(f"Warning: No <a> tag found in this course: {course.get_text(strip=True)}")
+                    # it's a hub and not a course
+                    pass
 
     return page_courses
     
-def scrape_bu_courses(url, max_pages = None):
+def scrape_bu_courses(url, max_pages = MAX_PAGES):
     """
     Using the provided URL, scrape the BU website for the courses and their
     descriptions. Return a dataframe with the scraped information.
@@ -149,18 +154,3 @@ def scrape_bu_courses(url, max_pages = None):
 
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
-
-
-"""
-Run code
-"""
-
-url = "https://www.bu.edu/academics/cas/courses"
-course_df = scrape_bu_courses(url)
-        
-for index, row in course_df.iterrows():
-    print(f"Row {index}:")
-    print(f"Title: {row['Title']}")
-    print(f"Description: {row['Description']}")
-    print(f"URL: {row['URL']}")
-    print("-" * 40)  # Separator for readability

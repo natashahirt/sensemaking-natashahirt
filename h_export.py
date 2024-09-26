@@ -18,3 +18,12 @@
 #  any assumptions or decisions made during 
 #  the data preparation process.
 # -----------------------------------------------
+
+from _imports import *
+
+def export(df, directory='results/'):
+
+    df.to_csv(directory + "BU_2024_courses.csv", index=False) # export as csv
+    records = df.to_dict(orient='records') # export as json
+    with open(directory + "scraped_BU_catalog.json", 'w') as f:
+        json.dump(records, f, indent=4)
