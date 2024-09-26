@@ -5,6 +5,8 @@ from collections import Counter
 from functools import reduce
 import plotly.graph_objects as go
 import re
+import json
+import fitz  # PyMuPDF
 
 from _constants import *
 
