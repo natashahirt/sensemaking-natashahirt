@@ -30,3 +30,4 @@ def visualize_frequency_count(word_count_df, n_words=10):
                           tickfont_size=14,),
                       )
     fig.show()
+    fig.write_image("results/BU catalog most frequent words.png")

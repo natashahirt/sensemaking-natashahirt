@@ -16,3 +16,4 @@ from c_parse import *
 from f_frequency import *
 from g_visualization import *
 from h_export import *
+from l_course_offerings import *

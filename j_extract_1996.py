@@ -57,7 +57,9 @@ def parse_courses(text):
 
         # Detect course number (with a period, e.g., 1.107)
         if "Instructor" in current_course or current_course == {}:  # Start search for new if we have an instructor
+            
             parts = line.split()  # Split the line by spaces to check its structure
+            
             if (any(line.startswith(prefix) for prefix in MIT_COURSE_PREFIXES) or line[:1].isdigit()) and '.' in line and len(parts) > 1 and not line.startswith("0") and ',' not in parts[0]:
                 # Save previous course before starting new one
                 if current_course:

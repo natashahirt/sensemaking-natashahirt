@@ -23,3 +23,12 @@ def export_and_analyze_BU_catalog(url=BU_URL):
     export(scraped_df) # saves the df into the default (or specified) path
     word_count_df = get_frequency_df(scraped_df) # get the frequencies of words as a df
     visualize_frequency_count(word_count_df, n_words=20) # visualize the top n_words in terms of frequency
+
+def sped_up_pipeline(csv_path):
+
+    scraped_df = pd.read_csv(csv_path)
+    word_count_df = get_frequency_df(scraped_df) # get the frequencies of words as a df
+    visualize_frequency_count(word_count_df, n_words=20) # visualize the top n_words in terms of frequency
+
+#export_and_analyze_BU_catalog()
+sped_up_pipeline("results/BU_2024_courses.csv")
