@@ -1,7 +1,7 @@
 BU_URL = "https://www.bu.edu/academics/cas/courses"
 MIT_URL = "https://student.mit.edu/catalog/index.cgi"
 MAX_PAGES = 20
-STOPWORDS = {"in", "and", "the", "of", "to", "a", "is", "with", "for"}
+STOPWORDS = {"in", "and", "the", "of", "to", "a", "is", "with", "for", "m"}
 MIT_COURSE_PREFIXES = ['HST', 'MAS', 'SP', 'STS', 'SWE', 'TOX', 'TPP', 'ROTC', 'AS', 'MS', 'NS']
 MIT_COURSE_DICT = { 'Civil and Environmental Engineering': '1',
                     'Mechanical Engineering': '2',

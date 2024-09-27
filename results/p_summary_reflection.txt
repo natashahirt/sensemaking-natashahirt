@@ -1,0 +1,99 @@
+# -----------------------------------------------
+#  12. Course Offerings Over Time
+# 
+#  After extracting the course data from 
+#  both the 1996 and present catalogs, 
+#  analyze the number of courses offered 
+#  in various departments. Are there any 
+#  departments that have significantly 
+#  expanded or reduced their course offerings? 
+#  If so, identify them and discuss possible 
+#  reasons for these changes.
+# -----------------------------------------------
+
+There are two majors that have significantly increased their course offering: course 6 (CS) and
+course 15 (business/Sloan). Overall though, I think that the distribution of classes remains the 
+same or similar. Course 6 and 15 were already the majors with the most courses in 1996, but
+MIT offering more classes across the board makes the difference seem much more drastic.
+
+MIT has always been a tech school, and computation has been a big part of its work for the last
+decades, as this is where the cutting edge is. There is also demand for high-class managers and
+particularly people who are smart about business analytics, which is what Sloan is known for. 
+
+Other majors e..g HST, TPP, CSE, WGS which didn't exist in 1996 now exist, suggesting that there
+is both more of an emphasis on interdisciplinary studies (e.g. CSE is computational science AND
+engineering) as well as there being a greater emphasis on HASS and social topics around equality.
+
+I would say we are trending
+
+# -----------------------------------------------
+#  13. Title Evolution:
+# 
+#  Conduct a word frequency analysis 
+#  on course titles from 1996 and 2024 
+#  to explore shifts in academic 
+#  terminology and focus areas.
+# -----------------------------------------------
+
+I plotted the intersection between the top 100 lines of the 1996 catalog and 2024 catalog. 
+The plots are shown as increase in percentages (i.e. "subject" was used 19% more in the 2024
+catalog vs the 1996 catalog) because absolute numbers would have been an unfair comparison
+given the larger sample set. 
+
+If we exclude "special subject", the combination of which is new to 2024, the next most
+increased word used is "engineering", followed by "science" and "design". There appears to be
+a greater focus on interdisciplinary fields ("Data" (0.039)... "computational" (0.033)... 
+"machine" (0.024)... "analytics" (0.013)... and "modeling" (0.013)) etc. There is also an 
+increase in terms regarding societal and global concerns (global" (0.040), "sustainable" (0.013),
+"climate" (0.018), "energy" (0.034), and "sustainability" (0.008)). Industrial and mechanical
+fields seem to be less important than newer fields like computation.
+
+# -----------------------------------------------
+#  14. New and Discontinued Subjects:
+# 
+#  Identify subjects that were offered in 
+#  1996 but no longer exist in 2024, as 
+#  well as new subjects introduced in 2024. 
+#  Explore possible reasons for these changes.
+# ----------------------------------------------
+
+To summarize the outcomes of this I plotted the distribution of majors from old (subject 
+numbers that only exist in 1996) and new (subject numbers that only exist in 2024). This 
+shows both turnover as well as absolute increase in numbers. Pure 21 courses have all but
+disappeared now that there are additional subcategories 21A, 21H, 21L etc. There has been
+incredibly high turnover in course 6 (more than in course 15). Course 5 shows a good deal
+of overlap. The Military Science major is completely gone now, though Naval Science has new
+subjects and still exists. This shift points to innovation in the fields as well as to changes
+in catalog naming convention (e.g. the changes to all the course 6 numerations a few years
+ago).
+
+# -----------------------------------------------
+#  15. Curriculum Breadth:
+# 
+#  Compare the breadth of topics in the 
+#  1996 and 2024 catalogs to assess whether 
+#  the curriculum has become more 
+#  interdisciplinary or specialized.
+# -----------------------------------------------
+
+I analyzed the catalog to find the incidence of "interdisciplinary" words such as 'cross-
+disciplinary', 'multidisciplinary', 'integrative', 'applied to', and 'interdisciplinary'. 
+The number of classes that had one or more of these words were:
+- 1996:  61 out of 2676  (2.2%)
+- 2024:  156 out of 5881 (2.6%)
+This scales pretty much with the number of classes that were available. At least the explicit 
+mention of interdisciplinary work has not changed substantially.
+
+# -----------------------------------------------
+#  16. Summary and Reflection:
+# 
+#  Summarize your findings from the 
+#  previous tasks, reflecting on the most 
+#  significant changes in the MIT course 
+#  catalog over time. Relate these changes to 
+#  broader trends in education and industry.
+# -----------------------------------------------
+
+Overall we will see subjects that are trending toward more computation and less physical
+manufacturing work. The economy is shifting to a knowledge industry, at least in elite 
+universities, and the skillset required is shifting in a similar manner.

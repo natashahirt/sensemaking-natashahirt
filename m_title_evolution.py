@@ -10,8 +10,8 @@
 from _imports import *
 
 def compare_word_frequencies(df_1996, df_2024):
-    word_count_1996 = get_frequency_df(df_1996.head(100))
-    word_count_2024 = get_frequency_df(df_2024.head(100))
+    word_count_1996 = get_frequency_df(df_1996)
+    word_count_2024 = get_frequency_df(df_2024)
 
     word_count_1996_dict = {row[0]: int(row[1]) for i,row in word_count_1996.iterrows()}
     word_count_2024_dict = {row[0]: int(row[1]) for i,row in word_count_2024.iterrows()}
@@ -19,17 +19,24 @@ def compare_word_frequencies(df_1996, df_2024):
 
     differences = []
 
-    print(word_count_2024_dict["engineering"] - word_count_1996_dict["engineering"])
-
     for word in all_words:
-        difference = word_count_2024_dict[word] - word_count_1996_dict[word]
-        differences.append(difference)
+        count_1996 = word_count_1996_dict.get(word, 0)  # Default to 0 if word not found
+        count_2024 = word_count_2024_dict.get(word, 0)  # Default to 0 if word not found
+        difference = count_2024/len(word_count_2024_dict.keys()) - count_1996/len(word_count_1996_dict.keys())
+        differences.append((word, difference))
+
+    # Sort differences by absolute value (largest changes first, positive or negative)
+    sorted_differences = sorted(differences, key=lambda x: abs(x[1]), reverse=True)
+
+    # Separate the sorted words and differences into two lists
+    words_list = [item[0] for item in sorted_differences][:50]
+    differences_list = [item[1] for item in sorted_differences][:50]
     
     fig = go.Figure()
     fig.add_trace(go.Bar(
-        y=all_words,
-        x=differences,
-        text = all_words,
+        y=words_list,
+        x=differences_list,
+        text = words_list,
         textposition='outside',
         orientation='h',
         marker_color='red'
