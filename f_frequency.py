@@ -14,7 +14,9 @@ def split_words(text):
     """
     Split the title string into individual words
     """
-    words = re.findall(r"\b[\w'-]+\b", text.lower())
+    if isinstance(text, float):
+        text = str(text)
+    words = re.findall(r"\b(?!\d)[\w'-]+\b", text.lower())
     words = filter_words(words)
     return words
 
@@ -29,7 +31,13 @@ def get_frequency_df(df):
     """
     Count the frequency of words and return a dataframe with words and their count
     """
-    mapped_titles = df['Title'].apply(split_words) # convert to lowercase and split into words
+    if "Title" in df:
+        mapped_titles = df['Title'].apply(split_words) # convert to lowercase and split into words
+    elif "Course Title" in df:
+        mapped_titles = df['Course Title'].apply(split_words) # convert to lowercase and split into words
+    else:
+        print("The title field doesn't exist.")
+        return
 
     flat_titles = [word for sublist in mapped_titles for word in sublist] # one list of many words
     word_frequencies = Counter(flat_titles)
